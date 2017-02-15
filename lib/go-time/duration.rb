@@ -37,11 +37,12 @@ module GoTime
 
     # Initializes a new duration instance.
     #
-    # @param ns [Fixnum] Duration in nanoseconds.
+    # @param number [Fixnum]
+    # @param unit [Fixnum, SECOND]
     #
     # @return [Duration]
-    def initialize(ns)
-      @nanoseconds = ns
+    def initialize(number, unit: SECOND)
+      @nanoseconds = number * unit
     end
 
     # Parses a Go time.Duration string.
@@ -63,7 +64,7 @@ module GoTime
         ns += (number * UNITS[unit])
       end
 
-      self.new(ns)
+      self.new(ns, unit: NANOSECOND)
     end
 
     # Returns the number of microseconds in the duration.

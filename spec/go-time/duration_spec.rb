@@ -15,9 +15,14 @@ module GoTime
     }
 
     describe "#new" do
-      it "creates from nanoseconds" do
-        d = Duration.new(Duration::HOUR)
-        expect(d.nanoseconds).to eq(Duration::HOUR)
+      it "creates from seconds by default" do
+        d = Duration.new(13)
+        expect(d.nanoseconds).to eq(13 * Duration::SECOND)
+      end
+
+      it "creates with the provided unit" do
+        d = Duration.new(13, unit: Duration::MILLISECOND)
+        expect(d.nanoseconds).to eq(13*Duration::MILLISECOND)
       end
     end
 
@@ -53,7 +58,8 @@ module GoTime
     describe "#to_s" do
       context "when all units are present" do
         it "renders all of the units" do
-          expect(Duration.new(all_nano).to_s).to eq(all_duration)
+          expect(Duration.new(all_nano, unit: Duration::NANOSECOND).to_s)
+            .to eq(all_duration)
         end
       end
 
