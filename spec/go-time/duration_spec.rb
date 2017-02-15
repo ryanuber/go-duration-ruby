@@ -14,19 +14,23 @@ module GoTime
       Duration::NANOSECOND
     }
 
-    it "creates from nanoseconds" do
-      d = Duration.new(Duration::HOUR)
-      expect(d.nanoseconds).to eq(Duration::HOUR)
+    describe "#new" do
+      it "creates from nanoseconds" do
+        d = Duration.new(Duration::HOUR)
+        expect(d.nanoseconds).to eq(Duration::HOUR)
+      end
     end
 
-    describe "parsing durations" do
+    describe "#parse" do
       it "parses a time.Duration string" do
         d = Duration.parse("1h")
         expect(d.nanoseconds).to eq(Duration::HOUR)
       end
 
       it "recognizes either form of microseconds" do
-        expect(Duration.parse("99us")).to eq(Duration.parse("99µs"))
+        a = Duration.parse("99us").microseconds
+        b = Duration.parse("99µs").microseconds
+        expect(a).to eq(b)
       end
 
       context "when multiple units are present" do
@@ -46,7 +50,7 @@ module GoTime
       end
     end
 
-    describe "formatting duration strings" do
+    describe "#to_s" do
       context "when all units are present" do
         it "renders all of the units" do
           expect(Duration.new(all_nano).to_s).to eq(all_duration)
