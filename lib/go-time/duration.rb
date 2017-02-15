@@ -1,25 +1,25 @@
 module GoTime
   class Duration
     # One nanosecond
-    NANOSECOND=1.freeze
+    NANOSECOND = 1.freeze
 
     # One microsecond
-    MICROSECOND=1000*NANOSECOND.freeze
+    MICROSECOND = 1000*NANOSECOND.freeze
 
     # One millisecond
-    MILLISECOND=1000*MICROSECOND.freeze
+    MILLISECOND = 1000*MICROSECOND.freeze
 
     # One second
-    SECOND=1000*MILLISECOND.freeze
+    SECOND = 1000*MILLISECOND.freeze
 
     # One minute
-    MINUTE=60*SECOND.freeze
+    MINUTE = 60*SECOND.freeze
 
     # One hour
-    HOUR=60*MINUTE.freeze
+    HOUR = 60*MINUTE.freeze
 
     # A mapping of Go's unit notations to their nanosecond values.
-    UNITS={
+    UNITS = {
       "h" => HOUR,
       "m" => MINUTE,
       "s" => SECOND,
