@@ -47,11 +47,15 @@ module GoTime
     # @return [Duration]
     def self.parse(duration)
       ns = 0
+
       until duration.empty?
         number = duration.slice!(/^[[:digit:]]+/).to_i
         unit = duration.slice!(/^[[:alpha:]]+/)
 
-        raise "Invalid unit '#{unit}'" unless UNITS[unit]
+        # Check that the units are recognized.
+        raise InvalidUnitError, unit unless UNITS[unit]
+
+        # Convert to nanoseconds and add to the total.
         ns += (number * UNITS[unit])
       end
 
