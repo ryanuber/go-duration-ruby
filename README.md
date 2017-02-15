@@ -1,7 +1,7 @@
-go-time-ruby
-============
+go-duration
+===========
 
-`go-time` is a gem which provides compatibility with Golang's
+`go-duration` is a gem which provides compatibility with Golang's
 [time.Duration](https://golang.org/pkg/time/#Duration) type strings.
 
 ## Examples
@@ -9,15 +9,15 @@ go-time-ruby
 From Golang's time.Duration:
 
 ```ruby
-d = GoTime::Duration.parse("1m30s")
-puts d.seconds
+d = GoDuration.parse("1m30s")
+d.seconds
 > 90
 ```
 
 To Golang's time.Duration:
 
 ```
-d = GoTime::Duration.new(90.seconds)
-puts d
+d = GoDuration::Duration.new(90.seconds)
+d.to_s
 > 1m30s
 ```

@@ -1,1 +1,1 @@
-require 'go-time'
+require 'go-duration'
