@@ -1,4 +1,8 @@
 module GoTime
+  # Duration deals with Golang's time.Duration. This type is commonly used
+  # in API's and/or CLI's, and is defined in the language itself (there is no
+  # formal specifcation or RFC for it). This class can be used to both parse
+  # and format duration strings.
   class Duration
     # One nanosecond
     NANOSECOND = 1.freeze
