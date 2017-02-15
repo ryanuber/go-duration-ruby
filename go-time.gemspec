@@ -14,8 +14,8 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/ryanuber/go-time-ruby"
 
   files              = Dir.glob('**/*').reject { |f| File.directory? f }
-  spec.files         = files.grep('lib')
-  spec.test_files    = files.grep('spec')
+  spec.files         = files.grep(%r{lib/})
+  spec.test_files    = files.grep(%r{spec/})
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "rake"
