@@ -7,6 +7,16 @@ class GoDuration
   MINUTE=60*SECOND.freeze
   HOUR=60*MINUTE.freeze
 
+  UNITS={
+    'h' => HOUR,
+    'm' => MINUTE,
+    's' => SECOND,
+    'ms' => MILLISECOND,
+    'µs' => MICROSECOND,
+    'us' => MICROSECOND,
+    'ns' => NANOSECOND,
+  }.freeze
+
   attr_reader :nanoseconds
 
   def initialize(v)
@@ -34,17 +44,10 @@ class GoDuration
   end
 
   def format
-    fmt = ""
     ns = nanoseconds
+    fmt = ""
 
-    {
-      'h': HOUR,
-      'm': MINUTE,
-      's': SECOND,
-      'ms': MILLISECOND,
-      'µs': MICROSECOND,
-      'ns': NANOSECOND,
-    }.each do |unit, value|
+    UNITS.each do |unit, value|
       number, ns = ns.divmod(value)
       fmt << "#{number}#{unit}" if number > 0
     end
@@ -61,24 +64,8 @@ class GoDuration
       number = v.slice!(/[[:digit:]]+/).to_i
       unit = v.slice!(/[[:alpha:]]+/)
 
-      case unit
-      when 'ns'
-        number *= NANOSECOND
-      when 'us', 'µs'
-        number *= MICROSECOND
-      when 'ms'
-        number *= MILLISECOND
-      when 's'
-        number *= SECOND
-      when 'm'
-        number *= MINUTE
-      when 'h'
-        number *= HOUR
-      else
-        raise "Invalid units: #{v}"
-      end
-
-      ns += number
+      raise "Invalid unit '#{unit}'" unless UNITS[unit]
+      ns += (number * UNITS[unit])
     end
 
     ns
