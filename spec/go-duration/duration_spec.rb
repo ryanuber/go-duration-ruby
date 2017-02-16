@@ -1,8 +1,15 @@
 require "spec_helper"
 
 module GoDuration
-  all_duration = "1h1m1s1ms1µs1ns"
-  all_nano = HOUR + MINUTE + SECOND + MILLISECOND + MICROSECOND + NANOSECOND
+  all_duration = "2h2m2s2ms2µs2ns"
+  all_nano = 2 * (
+    HOUR +
+    MINUTE +
+    SECOND +
+    MILLISECOND +
+    MICROSECOND +
+    NANOSECOND
+  )
 
   describe Duration do
     describe "#new" do
