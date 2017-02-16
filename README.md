@@ -16,8 +16,8 @@ d.seconds
 
 To Golang's time.Duration:
 
-```
+```ruby
 d = GoDuration::Duration.new(90.seconds)
 d.to_s
-> 1m30s
+> "1m30s"
 ```
