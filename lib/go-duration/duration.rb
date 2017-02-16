@@ -3,13 +3,13 @@ module GoDuration
   NANOSECOND = 1.freeze
 
   # One microsecond in nanoseconds.
-  MICROSECOND = NANOSECOND << 10.freeze
+  MICROSECOND = 1000 * NANOSECOND.freeze
 
   # One millisecond in nanoseconds.
-  MILLISECOND = MICROSECOND << 1.freeze
+  MILLISECOND = 1000 * MICROSECOND.freeze
 
   # One second in nanoseconds.
-  SECOND = MILLISECOND << 1.freeze
+  SECOND = 1000 * MILLISECOND.freeze
 
   # One minute in nanoseconds.
   MINUTE = 60 * SECOND.freeze
